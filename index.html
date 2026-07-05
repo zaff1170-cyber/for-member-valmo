@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>.:: Web Untuk Cikgu Ziha ::.</title>
+    <style>
+        body {
+            /* BACKGROUND LUAR: Biru Navy Gelap */
+            background: #0B132B;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+            margin: 0;
+            overflow-x: hidden;
+            box-sizing: border-box;
+        }
+
+        /* =======================================================
+           1. ANIMASI TEKS GERAK KANAN-KIRI & FEATHER EFFECT
+           ======================================================= */
+        h1 {
+            text-align: center;
+            margin-bottom: 5px;
+            font-size: 32px;
+            font-weight: bold;
+            display: inline-block;
+            background: linear-gradient(to right, #ffb6c1, #ffffff, #ffe4e1, #ffffff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 2px rgba(255, 182, 193, 0.6));
+            animation: kilau_warna 6s linear infinite, alunan_kanan 5s ease-in-out infinite;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 5px;
+            margin-bottom: 25px;
+            font-size: 22px;
+            font-weight: 600;
+            color: #ffb6c1; 
+            text-shadow: 0 0 8px rgba(255, 182, 193, 0.5); 
+        }
+
+        /* Kelas utama untuk sub-mesej biru neon di Halaman 1 */
+        .mesej-maaf {
+            color: #64dfdf;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        /* =======================================================
+           TULISAN BERGABUNG PUTIH + MERAH JAMBU (GRADIENT)
+           ======================================================= */
+        .teks-gradien {
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 1.8;
+            margin-top: 20px;
+            margin-bottom: 25px;
+            text-align: center;
+            display: block; 
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            
+            /* Campuran warna putih (atas) ke pink pastel (bawah) */
+            background: linear-gradient(to bottom, #ffffff 30%, #ffb6c1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            
+            /* Shadow lembut di belakang teks supaya senang dibaca */
+            filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.6));
+        }
+
+        /* =======================================================
+           MEMULIHKAN WARNA ASLI EMOJI (WARNA REAL)
+           ======================================================= */
+        .emoji-real {
+            -webkit-text-fill-color: initial; 
+            background: none;                 
+            display: inline-block;
+        }
+
+        /* =======================================================
+           2. BORDER KECIL UNTUK TEMPAT GAMBAR
+           ======================================================= */
+        .border-gambar {
+            position: relative;
+            width: 150px; 
+            height: 150px;
+            margin: 0 auto 25px auto;
+            padding: 3px; 
+            border-radius: 50%; 
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 15px rgba(255, 182, 193, 0.3);
+        }
+
+        .border-gambar::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: conic-gradient(#ffb6c1, #ffffff, #ffb6c1);
+            animation: pusing_smooth 1s linear infinite;
+        }
+
+        .border-gambar img {
+            position: relative;
+            width: 100%; /* Dibetulkan daripada width:: 100% */
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%; 
+            z-index: 1;
+            background: #1C2541; 
+        }
+
+        /* =======================================================
+           3. BUTTON NEON
+           ======================================================= */
+        .btn-neon {
+            background: transparent;
+            color: #ffffff;
+            border: 2px solid #bae6fd;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            display: inline-block;
+            margin: 10px auto 0 auto; 
+            box-shadow: 0 0 10px rgba(186, 230, 253, 0.2);
+            outline: none;
+        }
+
+        .btn-neon:hover {
+            border-color: #ff69b4;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #bae6fd, 0 0 30px #ff69b4, inset 0 0 10px rgba(186, 230, 253, 0.5);
+            text-shadow: 0 0 5px #ffffff;
+        }
+
+        /* =======================================================
+           STRUKTUR UTAMA KOTAK CONTAINER (DIPERBAIKI UNTUK RESPONSIVE)
+           ======================================================= */
+        .container {
+            position: relative;
+            width: 90%; /* Menggunakan peratusan besar untuk skrin kecil (HP) */
+            max-width: 600px; /* Menghalang kotak menjadi terlalu lebar di Laptop/TV */
+            margin: auto;
+            padding: 5px;
+            border-radius: 25px;
+            overflow: hidden; 
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            width: 200%; /* Diubah dari 120vw ke 200% supaya putaran tidak mengganggu skrin TV/HP */
+            height: 200%; 
+            background: conic-gradient(#ff69b4 0deg, #ffffff 90deg, #ff69b4 180deg, #ffffff 270deg, #ff69b4 360deg);
+            animation: pusing_smooth 6s linear infinite;
+        }
+
+        .container-inside {
+            position: relative;
+            background: #1C2541; 
+            width: 100%;
+            padding: 40px 30px;
+            border-radius: 21px; 
+            z-index: 1; 
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            box-sizing: border-box;
+        }
+
+        /* Logik Sorok Tulisan */
+        .halaman {
+            display: none;
+            width: 100%;
+            text-align: center;
+        }
+
+        .aktif {
+            display: block;
+        }
+
+        /* =======================================================
+           4. RESPONSIVE MEDIA QUERIES (SISTEM AUTOMATIK PERANTI)
+           ======================================================= */
+        
+        /* Tetapan khusus untuk Handphone (Skrin Kecil) */
+        @media (max-width: 480px) {
+            body {
+                padding-top: 20px; /* Kurangkan jarak atas di HP */
+            }
+            .container {
+                width: 95%; /* Besarkan sedikit penggunaan ruang skrin HP */
+            }
+            .container-inside {
+                padding: 30px 20px; /* Kurangkan padding dalam supaya teks muat */
+            }
+            h1 {
+                font-size: 24px; /* Kecilkan tajuk utama di HP */
+            }
+            h2 {
+                font-size: 16px;
+            }
+            .teks-gradien {
+                font-size: 14px; /* Kecilkan saiz tulisan mesej */
+                line-height: 1.6;
+            }
+            .border-gambar {
+                width: 120px; /* Kecilkan bulatan gambar di HP */
+                height: 120px;
+            }
+            .btn-neon {
+                padding: 10px 24px;
+                font-size: 14px;
+            }
+        }
+
+        /* Tetapan khusus untuk Android TV / Skrin Sangat Besar (Resolusi Tinggi) */
+        @media (min-width: 1400px) {
+            .container {
+                max-width: 750px; /* Besarkan sedikit saiz kotak di TV */
+            }
+            h1 {
+                font-size: 38px; /* Besarkan teks supaya jelas dilihat dari jauh */
+            }
+            h2 {
+                font-size: 24px;
+            }
+            .teks-gradien {
+                font-size: 18px;
+            }
+            .btn-neon {
+                font-size: 18px;
+                padding: 14px 35px;
+            }
+        }
+
+        /* =======================================================
+           KEYFRAMES LOGIK ANIMASI
+           ======================================================= */
+        @keyframes pusing_smooth {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes alunan_kanan {
+            0%, 100% { transform: translateX(0px); }
+            50% { transform: translateX(12px); } 
+        }
+
+        @keyframes kilau_warna {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="container-inside">
+            
+            <div class="border-gambar">
+                <img id="avatar-Valmo" src="gambar1.jpg" alt="Gambar">
+            </div>
+
+            <div id="page1" class="halaman aktif">
+                <h1>WELCOME TO MY WEB</h1>
+                <h2>❤️❤️CLICK THE NEXT BUTTON YAWW GUYSS❤️❤️</h2>
+                <p class="mesej-maaf">FOR ALL MEMBER VALMO!!</p>
+                <button class="btn-neon" onclick="tukarPage('page2')">Next</button>
+            </div>
+
+            <div id="page2" class="halaman">
+                <h1>SORRYY GUYSS...</h1>
+                <p class="teks-gradien">
+                    ASSALAMUALAIKUM GUYSS PARA² MEMBER MC YG SELALU NGAJAK MABARR, YG SELALU TEMAN SAYA TIME BOSAN N LAEN².. THANK YOU SO MUCH.. NOW I WANT TO APOLOGIZE IF I TERCAKAP KASAR, IF I SELALU BUAT MASALAH LIKE I CURI ITEM ON SPAWNER WITHER KAT SERVER MANA TAH.. AND IF I JARANG ON MC AND DC.. PLS FORGIVE ME.. <span class="emoji-real">🙏😭</span>
+                </p>
+                <button class="btn-neon" onclick="tukarPage('page3')">Next</button>
+            </div>
+
+            <div id="page3" class="halaman">
+                <h1>THANK YOUU GUYSS</h1>
+                
+                <p class="teks-gradien">
+                    DOAKAN SAYA DIPERMUDAHKAN SEGALA URUSAN DAN SEMOGA SAYA LULUS DLM EXAM.. KALAW BOLE STRAIGHT A+ DLM TRIAL NGAN SPM SEBENAR.. AAMIINN<span class="emoji-real">🤲🥰</span>
+                </p>
+                
+                <p class="teks-gradien" style="margin-top: 15px; margin-bottom: 30px;">
+                    <span class="emoji-real">🥺👉👈</span>SORRYYY AND THANK YOUUUUUU SOOO MUCHHH!!<span class="emoji-real">😻💕</span><br><br>
+                    I LOVE YOUU ALL.<span class="emoji-real">😘💕</span>
+                </p>
+                
+                <button class="btn-neon" onclick="tukarPage('page1')">Back to Home</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function tukarPage(idHalamanBaru) {
+            // 1. Tukar halaman yang aktif
+            let semuaHalaman = document.querySelectorAll('.halaman');
+            semuaHalaman.forEach(hlm => {
+                hlm.classList.remove('aktif');
+            });
+            document.getElementById(idHalamanBaru).classList.add('aktif');
+
+            // 2. Logik penukaran imej dinamik mengikut halaman
+            let imejJake = document.getElementById('avatar-Valmo');
+            if (idHalamanBaru === 'page1') {
+                imejJake.src = 'gambar1.jpg';
+            } else if (idHalamanBaru === 'page2') {
+                imejJake.src = 'gambar2.jpg';
+            } else if (idHalamanBaru === 'page3') {
+                imejJake.src = 'gambar3.jpg';
+            }
+        }
+    </script>
+
+</body>
+</html>
